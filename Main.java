@@ -7,18 +7,39 @@ public class Main {
     public static void main(String[] args) {
         final int MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
+        int principal;
+        float annualInterest;
+        byte years;
 
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.print("Principal: ");
-        int principal = keyboard.nextInt();
+        while (true) {
+            System.out.print("Principal ($1K - $1M): ");
+            principal = keyboard.nextInt();
+            if (principal >= 1_000 && principal <= 1_000_000)
+                break;
+            System.out.println("Number is out of range.");
+        }
 
-        System.out.print("Annual Interest Rate: ");
-        float annualInterest = keyboard.nextFloat();
+        while (true) {
+            System.out.print("Annual Interest Rate (1-30): ");
+            annualInterest = keyboard.nextFloat();
+            if (annualInterest >= 1 && annualInterest <= 30)
+                break;
+            System.out.println("Number is out of range.");
+        }
+
         float monthlyRate = annualInterest / PERCENT / MONTHS_IN_YEAR ;
 
-        System.out.print("Period (Years): ");
-        byte years = keyboard.nextByte();
+        while (true) {
+            System.out.print("Period in Years (1-30): ");
+            years = keyboard.nextByte();
+            if (years >= 1 && years <= 30) {
+                break;
+            }
+            System.out.println("Number is out of range.");
+        }
+
         int numberOfPayments = years * MONTHS_IN_YEAR;
 
         double money = principal
